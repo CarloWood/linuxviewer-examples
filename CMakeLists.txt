@@ -1,1 +1,1 @@
-add_subdirectory(hello_triangle)
+add_subdirectory(hello_vertex_buffer)
