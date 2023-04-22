@@ -2,31 +2,20 @@
 #include "Window.h"
 #include "TrianglePipelineCharacteristic.h"
 
+// Required header to be included below all other headers (that might include vulkan headers).
+#include <vulkan/lv_inline_definitions.h>
+
 namespace {
 
 // Define the vertex shader, with the coordinates of the
 // corners of the triangle, and their colors, hardcoded in.
 constexpr std::string_view triangle_vert_glsl = R"glsl(
-#version 450
-
 layout(location = 0) out vec3 fragColor;
-
-vec2 positions[3] = vec2[](
-    vec2(0.0, -0.5),
-    vec2(-0.5, 0.5),
-    vec2(0.5, 0.5)
-);
-
-vec3 colors[3] = vec3[](
-    vec3(1.0, 0.0, 0.0),
-    vec3(0.0, 1.0, 0.0),
-    vec3(0.0, 0.0, 1.0)
-);
 
 void main()
 {
-  gl_Position = vec4(positions[gl_VertexIndex], 0.0, 1.0);
-  fragColor = colors[gl_VertexIndex];
+  gl_Position = vec4(VertexData::m_position, 0.0, 1.0);
+  fragColor = VertexData::m_color;
 }
 )glsl";
 
@@ -57,6 +46,13 @@ void Window::create_render_graph()
 
   // Generate everything.
   m_render_graph.generate(this);
+}
+
+void Window::create_vertex_buffers()
+{
+  DoutEntering(dc::vulkan, "Window::create_vertex_buffers() [" << this << "]");
+
+  m_vertex_buffers.create_vertex_buffer(this, m_triangle);
 }
 
 void Window::register_shader_templates()
@@ -132,6 +128,7 @@ void Window::draw_frame()
     command_buffer.beginRenderPass(main_pass.begin_info(), vk::SubpassContents::eInline);
     command_buffer.setViewport(0, { viewport });
     command_buffer.setScissor(0, { scissor });
+    command_buffer.bindVertexBuffers(m_vertex_buffers);
 
     // FIXME: this is a hack - what we really need is a vector with RenderProxy objects.
     // For now we must make sure that the pipeline was created before drawing to it.

@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Triangle.h"
+#include <vulkan/VertexBuffers.h>
 #include <vulkan/SynchronousWindow.h>
 
 class Window : public vulkan::task::SynchronousWindow
@@ -17,6 +19,12 @@ class Window : public vulkan::task::SynchronousWindow
   vulkan::shader_builder::ShaderIndex m_shader_vert;
   vulkan::shader_builder::ShaderIndex m_shader_frag;
 
+  // Vertex buffers.
+  vulkan::VertexBuffers m_vertex_buffers;
+
+  // Vertex buffer generators.
+  Triangle m_triangle;                  // Vertex buffer.
+
   // The pipeline factory that will create our graphics pipeline.
   vulkan::pipeline::FactoryHandle m_pipeline_factory;
 
@@ -28,13 +36,13 @@ class Window : public vulkan::task::SynchronousWindow
   // Override virtual functions of the base class.
 
   void create_render_graph() override;
+  void create_vertex_buffers() override;
   void register_shader_templates() override;
   void create_graphics_pipelines() override;
   void render_frame() override;
 
-  // We're not using textures or vertex buffers.
+  // We're not using textures.
   void create_textures() override { }
-  void create_vertex_buffers() override { }
 
   //---------------------------------------------------------------------------
 

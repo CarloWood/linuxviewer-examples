@@ -25,8 +25,6 @@ class TrianglePipelineCharacteristic :
   TrianglePipelineCharacteristic(vulkan::task::SynchronousWindow const* owning_window COMMA_CWDEBUG_ONLY(bool debug)) :
     vulkan::pipeline::Characteristic(owning_window COMMA_CWDEBUG_ONLY(debug))
   {
-    // Required when we don't have vertex buffers.
-    m_use_vertex_buffers = false;
   }
 
  protected:
@@ -44,6 +42,9 @@ class TrianglePipelineCharacteristic :
     // Register the two shaders that we use.
     add_shader(window->m_shader_vert);
     add_shader(window->m_shader_frag);
+
+    // Register the vertex buffer.
+    add_vertex_input_bindings(window->m_vertex_buffers);
   }
 
  public:
