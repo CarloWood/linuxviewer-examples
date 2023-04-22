@@ -1,27 +1,30 @@
 project(linux_vulkan_engine
   LANGUAGES CXX
-  DESCRIPTION "Implementation of Hello Triangle."
+  DESCRIPTION "Implementation of Hello Triangle with vertex buffers."
 )
 
 include(AICxxProject)
 
 #==============================================================================
 
-add_executable(hello_triangle
+add_executable(hello_vertex_buffer
   HelloTriangle.cxx
   HelloTriangle.h
   Window.cxx
   Window.h
   TrianglePipelineCharacteristic.h
   LogicalDevice.h
+  Triangle.cxx
+  Triangle.h
+  VertexData.h
 )
 
-target_include_directories(hello_triangle
+target_include_directories(hello_vertex_buffer
   PRIVATE
     ${CMAKE_SOURCE_DIR}/src
 )
 
-target_link_libraries(hello_triangle
+target_link_libraries(hello_vertex_buffer
   PRIVATE
     LinuxViewer::vulkan
     LinuxViewer::shader_builder
