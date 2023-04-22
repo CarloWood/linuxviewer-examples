@@ -4,7 +4,7 @@
 #include "Window.h"
 #include "debug.h"
 #ifdef CWDEBUG
-#include <utils/debug_ostream_operators.h>      // Required to print AIAlert::Error to an ostream.
+#include <utils/debug_ostream_operators.h>    // Required to print AIAlert::Error to an ostream.
 #endif
 
 // Required header to be included below all other headers (that might include vulkan headers).

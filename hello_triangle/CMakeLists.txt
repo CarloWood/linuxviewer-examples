@@ -1,6 +1,6 @@
 project(linux_vulkan_engine
   LANGUAGES CXX
-  DESCRIPTION "Implementation of Hello Triangle."
+  DESCRIPTION "Implementation of HelloTriangle."
 )
 
 include(AICxxProject)
