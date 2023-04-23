@@ -1,6 +1,7 @@
 #pragma once
 
-#include "Triangle.h"
+#include "Position.h"
+#include "Color.h"
 #include <vulkan/VertexBuffers.h>
 #include <vulkan/SynchronousWindow.h>
 
@@ -23,7 +24,8 @@ class Window : public vulkan::task::SynchronousWindow
   vulkan::VertexBuffers m_vertex_buffers;
 
   // Vertex buffer generators.
-  Triangle m_triangle;                  // Vertex buffer.
+  Position m_position;
+  Color m_color;
 
   // The pipeline factory that will create our graphics pipeline.
   vulkan::pipeline::FactoryHandle m_pipeline_factory;

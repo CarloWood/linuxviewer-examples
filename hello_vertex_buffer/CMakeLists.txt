@@ -14,9 +14,12 @@ add_executable(hello_vertex_buffer
   Window.h
   TrianglePipelineCharacteristic.h
   LogicalDevice.h
-  Triangle.cxx
-  Triangle.h
-  VertexData.h
+  Position.cxx
+  Position.h
+  Color.cxx
+  Color.h
+  VertexPosition.h
+  VertexColor.h
 )
 
 target_include_directories(hello_vertex_buffer

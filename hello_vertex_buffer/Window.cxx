@@ -14,8 +14,8 @@ layout(location = 0) out vec3 fragColor;
 
 void main()
 {
-  gl_Position = vec4(VertexData::m_position, 0.0, 1.0);
-  fragColor = VertexData::m_color;
+  gl_Position = vec4(VertexPosition::m_position, 0.0, 1.0);
+  fragColor = VertexColor::m_color;
 }
 )glsl";
 
@@ -52,7 +52,8 @@ void Window::create_vertex_buffers()
 {
   DoutEntering(dc::vulkan, "Window::create_vertex_buffers() [" << this << "]");
 
-  m_vertex_buffers.create_vertex_buffer(this, m_triangle);
+  m_vertex_buffers.create_vertex_buffer(this, m_position);
+  m_vertex_buffers.create_vertex_buffer(this, m_color);
 }
 
 void Window::register_shader_templates()
