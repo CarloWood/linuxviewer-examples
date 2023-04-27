@@ -12,7 +12,7 @@ LAYOUT_DECLARATION(VertexColor, per_vertex_data)
 };
 
 // Struct describing data type and format of vertex attributes.
-struct VertexColor
+STRUCT_DECLARATION(VertexColor)
 {
-  glsl::vec3 m_color;
+  MEMBER(0, vec3, m_color);
 };
