@@ -12,7 +12,7 @@ LAYOUT_DECLARATION(VertexPosition, per_vertex_data)
 };
 
 // Struct describing data type and format of vertex attributes.
-struct VertexPosition
+STRUCT_DECLARATION(VertexPosition)
 {
-  glsl::vec2 m_position;
+  MEMBER(0, vec2, m_position);
 };
