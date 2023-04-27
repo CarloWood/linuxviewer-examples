@@ -13,8 +13,8 @@ LAYOUT_DECLARATION(VertexData, per_vertex_data)
 };
 
 // Struct describing data type and format of vertex attributes.
-struct VertexData
+STRUCT_DECLARATION(VertexData)
 {
-  glsl::vec2 m_position;
-  glsl::vec3 m_color;
+  MEMBER(0, vec2, m_position);
+  MEMBER(1, vec3, m_color);
 };
